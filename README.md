@@ -190,9 +190,13 @@ $
 
 ## Bugs
 There was not found bugs, if you find one, contact to the Authors.
+
+
 ------------
 ## Authors
+Carlso Andres Ariztisabal - [Github](https://github.com/aristizabaru) / [Twitter](https://twitter.com/aristizabaru)  
+Carlos Alberto Usuga Martinez - [Github](https://github.com/klich1984) / [Twitter](https://twitter.com/usuga_martinez)
+
 ------------
 ## License
 Public Domain. No copy write protection.
-------------
