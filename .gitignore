@@ -1,6 +1,0 @@
-.gitignore
-*cache*
-test*.py
-.vscode
-*.json
-test_help
