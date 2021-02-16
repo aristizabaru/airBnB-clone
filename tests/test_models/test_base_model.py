@@ -65,3 +65,15 @@ class TestBaseModel(unittest.TestCase):
                          my_base1.updated_at, "Dates are not equal")
         self.assertEqual(my_base2.created_at,
                          my_base2.updated_at, "Dates are not equal")
+
+    def test_save(self):
+        """Test 'update_at' and 'created_at' after some updates"""
+        my_base = BaseModel()
+        updated = my_base.updated_at
+        self.assertEqual(my_base.created_at, updated,
+                         "Dates are not equal")
+        my_base.save()
+        self.assertNotEqual(my_base.updated_at, updated,
+                            "updated_at is equal than previous updated_at")
+        self.assertNotEqual(my_base.created_at, my_base.updated_at,
+                            "created_at is equal than updated_at")
