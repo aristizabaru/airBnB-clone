@@ -8,20 +8,13 @@ Classes
 # create docstrings
 import json
 import os.path
-import models
-"""from models.base_model import BaseModel
+from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-"""
-# list of valid models
-"""models_dict = {"BaseModel": BaseModel,
-"User": User, "State": State, "City": City,
-"Amenity": Amenity, "Place": Place, "Review": Review}
-"""
 
 
 class FileStorage:
@@ -36,8 +29,16 @@ class FileStorage:
     """
     __file_path = "file.json"
     __objects = dict()
+    # list of valid models
+    __models_dict = {"BaseModel": BaseModel,
+                     "User": User, "State": State, "City": City,
+                     "Amenity": Amenity, "Place": Place, "Review": Review}
 
     # methods
+    def valid_models(self):
+        """returns the dictionary __objects"""
+        return type(self).__models_dict
+
     def all(self):
         """returns the dictionary __objects"""
         return type(self).__objects
@@ -60,7 +61,8 @@ class FileStorage:
             json_data[key] = json_data[key].to_dict()
         # <class 'dict'> -> JSON dump -> FILE
         with open(type(self).__file_path, "w", encoding="utf-8") as fd:
-            json.dump(json_data, fd, indent=4, ensure_ascii=False)
+            # remember to use indent=4
+            json.dump(json_data, fd, ensure_ascii=False)
 
     def reload(self):
         """deserializes the JSON file to __objects"""
@@ -71,5 +73,5 @@ class FileStorage:
             # <class 'dict'> -> <class 'Models'>
             for key in json_data:
                 new_key = json_data[key]["__class__"]
-                type(self).__objects[key] = models.models_dict[new_key](
+                type(self).__objects[key] = type(self).__models_dict[new_key](
                     **json_data[key])
