@@ -186,6 +186,61 @@ $
 
 ------------
 
+`mode interactive`
+`help`
+```
+KLICH84->/...->/AirBnB_clone/$ ./console.py
+(hbnb) help
+
+Documented commands (type `help <commad>` for more info):
+---------------------------------------------------------
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb) help all
+Prints all string representation of all
+instances based or not on the class name
+Ussage: all <class name>
+Ussage [optional]: <class name>.all()
+
+(hbnb)
+```
+`create and all`
+```
+(hbnb) create BaseModel
+c83c8280-f499-4a6b-9df4-0454d76b9ae3
+(hbnb) all BaseModel
+["[BaseModel] (c83c8280-f499-4a6b-9df4-0454d76b9ae3) {'id': 'c83c8280-f499-4a6b-9df4-0454d76b9ae3', 'created_at': datetime.datetime(2021, 2, 15, 18, 48, 22, 493634), 'updated_at': datetime.datetime(2021, 2, 15, 18, 48, 22, 493634)}"]
+(hbnb) all User
+["[User] (407c31ba-09e0-4d96-8e7a-a90bb4c7cc9d) {'id': '407c31ba-09e0-4d96-8e7a-a90bb4c7cc9d', 'created_at': datetime.datetime(2021, 2, 15, 18, 53, 0, 796130), 'updated_at': datetime.datetime(2021, 2, 15, 18, 53, 0, 796130)}"]
+(hbnb)
+```
+`mode non-interactive`
+```
+KLICH84->/...->/AirBnB_clone/$ echo "help" | ./console.py
+(hbnb)
+Documented commands (type `help <commad>` for more info):
+---------------------------------------------------------
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb)
+```
+
+```
+KLICH84->/...->/AirBnB_clone/$ echo "help create" | ./console.py
+(hbnb) Creates a new instance of a model
+Ussage: create <class name>
+
+(hbnb)
+KLICH84->/...->/AirBnB_clone/$ echo create User | ./console.py
+(hbnb) 3083236a-c1e3-4689-8626-9182a9493f5c
+(hbnb)
+KLICH84->/...->/AirBnB_clone/$ echo "count User" | ./console.py
+(hbnb) 3
+(hbnb)
+KLICH84->/...->/AirBnB_clone/$ echo "all User" | ./console.py
+(hbnb) ["[User] (6b4053db-f35e-4bb0-8b85-ec7e67e1f50a) {'id': '6b4053db-f35e-4bb0-8b85-ec7e67e1f50a', 'created_at': datetime.datetime(2021, 2, 15, 21, 35, 23, 92533), 'updated_at': datetime.datetime(2021, 2, 15, 21, 37, 35, 717612), 'email': 'matias@gmailco', 'password': '12345', 'first_name': 'Orrego'}", "[User] (31a7dc8c-782d-46bb-b71a-840fd5089d25) {'id': '31a7dc8c-782d-46bb-b71a-840fd5089d25', 'created_at': datetime.datetime(2021, 2, 15, 21, 53, 29, 148435), 'updated_at': datetime.datetime(2021, 2, 15, 21, 53, 29, 148435)}", "[User] (3083236a-c1e3-4689-8626-9182a9493f5c) {'id': '3083236a-c1e3-4689-8626-9182a9493f5c', 'created_at': datetime.datetime(2021, 2, 15, 21, 54, 44, 927164), 'updated_at': datetime.datetime(2021, 2, 15, 21, 54, 44, 927164)}", "[User] (6ae55233-5738-434e-960b-0a17f5326ff2) {'id': '6ae55233-5738-434e-960b-0a17f5326ff2', 'created_at': datetime.datetime(2021, 2, 15, 21, 57, 6, 616332), 'updated_at': datetime.datetime(2021, 2, 15, 21, 57, 6, 616332)}"]
+```
+
 ------------
 
 ## Bugs
