@@ -3,18 +3,20 @@
 import cmd
 import sys
 import shlex
-from models import storage
+import models
+"""from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
-from models.review import Review
+from models.review import Review"""
 # list of valid models
-models_dict = {"BaseModel": BaseModel,
-               "User": User, "State": State, "City": City,
-               "Amenity": Amenity, "Place": Place, "Review": Review}
+"""models_dict = {"BaseModel": models.BaseModel,
+"User": models.User, "State": models.State, "City": models.City,
+"Amenity": models.Amenity, "Place": models.Place, "Review": models.Review}
+"""
 # List of attributes prohibited for updating
 no_update = ["id", "created_at", "updated_at"]
 
@@ -70,8 +72,8 @@ Ussage: create <class name>
         if self.check_class(line) is False:
             return
         line = line.split()
-        new_model = models_dict[line[0]]()
-        storage.save()
+        new_model = models.models_dict[line[0]]()
+        models.storage.save()
         print(new_model.id)
 
     def do_count(self, line):
@@ -81,7 +83,7 @@ Ussage [optional]: <class name>.all()
         """
         line = line.split()
         count = 0
-        for key in storage.all().keys():
+        for key in models.storage.all().keys():
             key = key.split(".")
             if key[0] == line[0]:
                 count += 1
@@ -98,7 +100,7 @@ Ussage: show <class name> <id>
             return
         line = line.split()
         my_key = line[0]+"."+line[1]
-        objects = storage.all()
+        objects = models.storage.all()
         if my_key in objects.keys():
             print(objects[my_key])
 
@@ -113,10 +115,10 @@ Ussage: destroy <class name> <id>
             return
         line = line.split()
         my_key = line[0]+"."+line[1]
-        objects = storage.all()
+        objects = models.storage.all()
         if my_key in objects.keys():
             objects.pop(my_key)
-            storage.save()
+            models.storage.save()
 
     def do_all(self, line):
         """Prints all string representation of all
@@ -124,7 +126,7 @@ instances based or not on the class name
 Ussage: all <class name>
 Ussage [optional]: <class name>.all()
         """
-        objects = storage.all()
+        objects = models.storage.all()
         my_objects = list()
         for key in objects:
             my_objects.append(str(objects[key]))
@@ -157,7 +159,7 @@ Ussage: update <class name> <id> <attribute name> '<attribute value>'
         attribute = line[2]
         value = line[3]
         if attribute not in no_update:
-            objects = storage.all()
+            objects = models.storage.all()
             my_key = line[0]+"."+line[1]
             if hasattr(objects[my_key], attribute):
                 if type(getattr(objects[my_key], attribute)) is int:
@@ -203,7 +205,7 @@ Ussage [optional]: ctrl + D
             print("** class name missing **")
             return False
         line = line.split()
-        if line[0] not in models_dict.keys():
+        if line[0] not in models.models_dict.keys():
             print("** class doesn't exist **")
             return False
         return True
@@ -217,7 +219,7 @@ Ussage [optional]: ctrl + D
             return False
         else:
             my_key = line[0]+"."+line[1]
-            objects = storage.all()
+            objects = models.storage.all()
             if my_key not in objects.keys():
                 print("** no instance found **")
                 return False

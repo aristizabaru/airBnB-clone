@@ -8,17 +8,20 @@ Classes
 # create docstrings
 import json
 import os.path
-from models.base_model import BaseModel
+import models
+"""from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+"""
 # list of valid models
-models_dict = {"BaseModel": BaseModel,
-               "User": User, "State": State, "City": City,
-               "Amenity": Amenity, "Place": Place, "Review": Review}
+"""models_dict = {"BaseModel": BaseModel,
+"User": User, "State": State, "City": City,
+"Amenity": Amenity, "Place": Place, "Review": Review}
+"""
 
 
 class FileStorage:
@@ -68,5 +71,5 @@ class FileStorage:
             # <class 'dict'> -> <class 'Models'>
             for key in json_data:
                 new_key = json_data[key]["__class__"]
-                type(self).__objects[key] = models_dict[new_key](
+                type(self).__objects[key] = models.models_dict[new_key](
                     **json_data[key])
