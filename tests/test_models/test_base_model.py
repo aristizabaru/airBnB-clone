@@ -40,3 +40,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(base_dict["name"], "Betty")
         self.assertEqual(base_dict["my_number"], 60)
         self.assertEqual(base_dict["email"], "betty.holberton@airbnb.com")
+
+    def test_attributes(self):
+        """Test attributes id, created_at and updated_at"""
+        my_base = BaseModel()
+        my_base2 = BaseModel()
+        self.assertTrue(hasattr(my_base, "id"), "'id' attribute not found")
+        self.assertTrue(hasattr(my_base, "created_at"),
+                        "'created_at' attribute not found")
+        self.assertTrue(hasattr(my_base, "updated_at"),
+                        "'updated_at' attribute not found")
+        self.assertNotEqual(my_base.id, my_base2.id,
+                            "BaseModels instances has the same 'id'")
