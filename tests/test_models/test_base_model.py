@@ -3,6 +3,7 @@
 import unittest
 import pep8
 import models
+import datetime
 BaseModel = models.base_model.BaseModel
 
 
@@ -52,3 +53,15 @@ class TestBaseModel(unittest.TestCase):
                         "'updated_at' attribute not found")
         self.assertNotEqual(my_base.id, my_base2.id,
                             "BaseModels instances has the same 'id'")
+
+    def test_datetime(self):
+        """Test if instances are created with different times"""
+        my_base1 = BaseModel()
+        my_date = datetime.datetime.now()
+        my_base2 = BaseModel()
+        self.assertTrue(my_base1.created_at <= my_date <= my_base2.created_at,
+                        "There are some equal dates")
+        self.assertEqual(my_base1.created_at,
+                         my_base1.updated_at, "Dates are not equal")
+        self.assertEqual(my_base2.created_at,
+                         my_base2.updated_at, "Dates are not equal")
