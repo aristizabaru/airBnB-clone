@@ -21,14 +21,12 @@ no_update = ["id", "created_at", "updated_at"]
 
 class HBNBCommand(cmd.Cmd):
     """Command line console
-
     Class attributes
         prompt (str) = CML prompt
         doc_header (str) = header for documented methods
         undoc_header (str) = header for undocumented methods
         misc_header (str) = header for misc messages
         ruler (str) = separator for headers
-
     Methods
         do_create()
         do_show()
@@ -38,14 +36,13 @@ class HBNBCommand(cmd.Cmd):
         emptyline()
         do_quit()
         do_EOF()
-
     Static methods
         check_class()
         check_id()
         check_attribute()
         get_arguments(list_arg)
     """
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     doc_header = "Documented commands (type `help <commad>` for more info):"
     misc_header = "hbnb console"
     undoc_header = "Undocumented commands:"
@@ -54,7 +51,6 @@ class HBNBCommand(cmd.Cmd):
     # methods
     def precmd(self, line):
         """Modify line if command has the following sintax:
-
 <class name>.<command([arguments])>
 """
         line_list = line.split(".")
@@ -69,7 +65,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """Creates a new instance of a model
-
 Ussage: create <class name>
         """
         if self.check_class(line) is False:
@@ -81,7 +76,6 @@ Ussage: create <class name>
 
     def do_count(self, line):
         """Return number of istances of a class
-
 Ussage: count <class name>
 Ussage [optional]: <class name>.all()
         """
@@ -96,7 +90,6 @@ Ussage [optional]: <class name>.all()
     def do_show(self, line):
         """Prints the string representation of
 an instance based on the class name
-
 Ussage: show <class name> <id>
         """
         if self.check_class(line) is False:
@@ -112,7 +105,6 @@ Ussage: show <class name> <id>
     def do_destroy(self, line):
         """Deletes an instance based on the
 classname and id
-
 Ussage: destroy <class name> <id>
         """
         if self.check_class(line) is False:
@@ -129,7 +121,6 @@ Ussage: destroy <class name> <id>
     def do_all(self, line):
         """Prints all string representation of all
 instances based or not on the class name
-
 Ussage: all <class name>
 Ussage [optional]: <class name>.all()
         """
@@ -154,7 +145,6 @@ Ussage [optional]: <class name>.all()
     def do_update(self, line):
         """Updates an instance based on the class name
 and id by adding or updating attribute
-
 Ussage: update <class name> <id> <attribute name> '<attribute value>'
         """
         if self.check_class(line) is False:
@@ -190,14 +180,12 @@ Ussage: update <class name> <id> <attribute name> '<attribute value>'
 
     def do_quit(self, line):
         """Exit the console
-
 Ussage: quit
         """
         return True
 
     def do_EOF(self, line):
         """"Exit the console
-
 Ussage: EOF
 Ussage [optional]: ctrl + D
         """
