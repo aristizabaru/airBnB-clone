@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 """module console"""
 import cmd
 import sys
@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 arguments = self.get_arguments(line[first_idx:-1])
             line = command+" "+class_name+" "+arguments
-        #print("LINE BEFORE EXIT:", line)
+        # print("LINE BEFORE EXIT:", line)
         return line
 
     def do_create(self, line):
