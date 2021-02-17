@@ -269,17 +269,137 @@ class TestDestroyCommand(unittest.TestCase):
         lencl = len(classes)
         id_cl = []
         for i in classes:
-            with patch('sys.stdout', new=io.StringIO()) as f:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
                 HBNBCommand().onecmd("create " + i)
-                id_st = f.getvalue()
+                id_st = fd.getvalue()
                 id_cl.append(id_st)
                 alldic = storage.all()
                 self.assertTrue((i + '.' + id_st[:-1]) in alldic.keys())
         self.assertEqual(len(alldic), lencl)
         for i, j in zip(classes, id_cl):
-            with patch('sys.stdout', new=io.StringIO()) as f:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
                 HBNBCommand().onecmd("destroy " + i + " " + j)
                 alldic = storage.all()
                 self.assertFalse((i + '.' + id_st[:-1]) in alldic.keys())
                 lencl -= 1
                 self.assertEqual(len(alldic), lencl)
+
+
+class TestShowCommand(unittest.TestCase):
+    """Test show command"""
+
+    def setUp(self):
+        """Set up for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+        FileStorage._FileStorage__objects = {}
+
+    def test_show_no_arg(self):
+        """Test for show with no command"""
+        message = "** class name missing **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            HBNBCommand().onecmd("show")
+            stdout = fd.getvalue()
+            self.assertEqual(message, stdout)
+
+    def test_show_no_exist_class(self):
+        """Test for show non-existent class"""
+        message = "** class doesn't exist **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            HBNBCommand().onecmd("show MyModel")
+            stdout = fd.getvalue()
+            self.assertEqual(message, stdout)
+
+    def test_new_show_no_exist_class(self):
+        """Test for show non-existent class"""
+        message = "** class doesn't exist **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            pre_cmd = HBNBCommand().precmd("MyModel.show()")
+            HBNBCommand().onecmd(pre_cmd)
+            stdout = fd.getvalue()
+            if stdout[0] == "\n":
+                message = "\n" + message
+            self.assertEqual(message, stdout)
+
+    def test_show_no_id(self):
+        """Test for show with id missing"""
+        message = "** instance id missing **\n"
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("show " + i)
+                stdout = fd.getvalue()
+                self.assertEqual(message, stdout)
+
+    def test_new_show_no_id(self):
+        """Test for show with id missing"""
+        message = "** instance id missing **\n"
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                pre_cmd = HBNBCommand().precmd(i + ".show()")
+                HBNBCommand().onecmd(pre_cmd)
+                stdout = fd.getvalue()
+                if stdout[0] == "\n":
+                    message = "\n" + message
+                self.assertEqual(message, stdout)
+
+    def test_show_no_existent_id(self):
+        """Test for show with non-existent id"""
+        message = "** no instance found **\n"
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("show " + i + " 123")
+                stdout = fd.getvalue()
+                self.assertEqual(message, stdout)
+
+    def test_new_show_no_existent_id(self):
+        """  Test for show with non-existent id """
+        message = "** no instance found **\n"
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                pre_cmd = HBNBCommand().precmd(i + ".show(123)")
+                HBNBCommand().onecmd(pre_cmd)
+                stdout = fd.getvalue()
+                if stdout[0] == "\n":
+                    message = "\n" + message
+                self.assertEqual(message, stdout)
+
+    def test_show_existing_id(self):
+        """Test for show with existing id"""
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("create " + i)
+                id_st = fd.getvalue()
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("show " + i + " " + id_st)
+                stdout = fd.getvalue()
+                alldic = storage.all()
+                objst = str(alldic[i + '.' + id_st[:-1]])
+                self.assertEqual(stdout[:-1], objst)
+
+    def test_show_show_existing_id(self):
+        """Test for show with existing id"""
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("create " + i)
+                id_st = fd.getvalue()
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                pre_cmd = HBNBCommand().precmd(i + ".show(\"" + id_st + "\")")
+                HBNBCommand().onecmd(pre_cmd)
+                stdout = fd.getvalue()
+                alldic = storage.all()
+                objst = str(alldic[i + '.' + id_st[:-1]])
+                self.assertEqual(stdout[:-1], objst)
