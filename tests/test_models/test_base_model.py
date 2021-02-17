@@ -28,6 +28,10 @@ class TestBaseModel(unittest.TestCase):
         except:
             pass
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        FileStorage._FileStorage__objects = {}
+
     def test_str(self):
         """test that the str method has the correct output"""
         inst = BaseModel()
