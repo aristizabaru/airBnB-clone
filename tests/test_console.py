@@ -776,23 +776,3 @@ class TestUpdate(unittest.TestCase):
             gattr = getattr(ins, j, False)
             self.assertEqual(gattr, k)
             self.assertEqual(m, type(gattr))
-
-
-class TestCount(unittest.TestCase):
-
-    """ Tests the update commands """
-
-    def setUp(self):
-        """ Set up for all methods """
-        try:
-            remove("file.json")
-        except:
-            pass
-        FileStorage._FileStorage__objects = {}
-
-    def tearDown(self):
-        """ Tear down for all methods """
-        try:
-            remove("file.json")
-        except:
-            pass
