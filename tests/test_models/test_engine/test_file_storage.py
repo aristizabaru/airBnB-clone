@@ -70,3 +70,11 @@ class TestFileStorage(unittest.TestCase):
         count_back_up = len(back_up)
         self.assertNotEqual(count_new, count_back_up,
                             "Both dictionaries have same number of items")
+
+    def test_json_path(self):
+        """Test if json file exist"""
+        my_base = base.BaseModel()
+        my_base.save()
+        pwd = os.getcwd()
+        path = pwd + "/file.json"
+        self.assertTrue(os.path.exists(path))
