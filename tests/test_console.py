@@ -35,7 +35,7 @@ class TestModels(unittest.TestCase):
             st = f.getvalue()
             self.assertEqual(msg, st)
 
-     def test_all_invalid_class(self):
+    def test_all_invalid_class(self):
         """Test for all with invalid class"""
         msg = "** class doesn't exist **\n"
         with patch('sys.stdout', new=io.StringIO()) as f:
@@ -54,8 +54,8 @@ class TestModels(unittest.TestCase):
             HBNBCommand().onecmd("destroy MyModel")
             st = f.getvalue()
             self.assertEqual(msg, st)
-    
-     def test_all_invalid_class(self):
+
+    def test_all_invalid_class(self):
         """  Test for all with no existent class """
         msg = "** class doesn't exist **\n"
         with patch('sys.stdout', new=io.StringIO()) as f:
