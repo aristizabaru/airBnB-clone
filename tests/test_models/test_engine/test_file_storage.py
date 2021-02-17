@@ -87,4 +87,4 @@ class TestFileStorage(unittest.TestCase):
     def test_intance_type(self):
         """Test that variable  storage is a FileStorage instance"""
         storage = engine.FileStorage()
-        self.assertEqual(type(storage), FileStorage)
+        self.assertIsInstance(storage, engine.FileStorage)
