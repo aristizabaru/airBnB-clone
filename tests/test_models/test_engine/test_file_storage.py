@@ -6,7 +6,6 @@ import models.engine.file_storage as engine
 import json
 import models.base_model as base
 import os
-from models import models_dict
 
 
 class TestFileStorageDocs(unittest.TestCase):
@@ -31,9 +30,23 @@ class TestFileStorage(unittest.TestCase):
         # Take name of private attribute from __dict__
         self.assertIs(new_dict, storage._FileStorage__objects)
 
+    def test_reload(self):
+        """Test reload when the file is not present"""
+        storage = engine.FileStorage()
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+        fname = "file.json"
+        self.assertFalse(os.path.isfile(fname))
+        storage.reload()
+
     def test_save_json(self):
         """Test that save properly saves objects to file.json"""
-        os.remove("file.json")
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
         storage = engine.FileStorage()
         back_up = storage.all()
         storage.save()
@@ -49,14 +62,11 @@ class TestFileStorage(unittest.TestCase):
     def test_new(self):
         """Test that add an object to the FileStorage instance"""
         storage = engine.FileStorage()
-        save = engine.FileStorage._FileStorage__objects
-        engine.FileStorage._FileStorage__objects = {}
-        test_dict = {}
-        for key, value in models_dict.items():
-            with self.subTest(key=key, value=value):
-                instance = value()
-                instance_key = instance.__class__.__name__ + "." + instance.id
-                storage.new(instance)
-                test_dict[instance_key] = instance
-                self.assertEqual(test_dict, storage._FileStorage__objects)
-        engine.FileStorage._FileStorage__objects = save
+        back_up = storage._FileStorage__objects
+        my_base = base.BaseModel()
+        storage._FileStorage__objects = {}
+        new_dict = storage._FileStorage__objects
+        count_new = len(new_dict)
+        count_back_up = len(back_up)
+        self.assertNotEqual(count_new, count_back_up,
+                            "Both dictionaries have same number of items")
