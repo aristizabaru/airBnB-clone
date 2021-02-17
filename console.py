@@ -69,7 +69,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 arguments = self.get_arguments(line[first_idx:-1])
             line = command+" "+class_name+" "+arguments
-        # print("LINE BEFORE EXIT:", line)
+        # Test only special command that doesn't
+        # have <class>.<command> sintax
+        if line == "all()":
+            line = "all"
         return line
 
     def do_create(self, line):
