@@ -21,6 +21,15 @@ class TestBaseModelDocs(unittest.TestCase):
 class TestBaseModel(unittest.TestCase):
     """Test the BaseModel class"""
 
+    def setUp(self):
+        """ Set up for all methods """
+        try:
+            remove("file.json")
+        except:
+            pass
+        # Boot __objects private attribute
+        FileStorage._FileStorage__objects = {}
+
     def test_str(self):
         """test that the str method has the correct output"""
         inst = BaseModel()
