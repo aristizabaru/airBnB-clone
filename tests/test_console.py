@@ -45,6 +45,13 @@ class TestHelpCommand(unittest.TestCase):
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def test_help_help(self):
         """Test <help> <help>"""
         message = "List available commands with \"help\" or " \
@@ -144,6 +151,13 @@ class TestCreateCommand(unittest.TestCase):
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def test_create_no_class(self):
         """Test for create with class missing"""
         message = "** class name missing **\n"
@@ -184,6 +198,13 @@ class TestDestroyCommand(unittest.TestCase):
             pass
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
+
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
 
     def test_destroy_no_class(self):
         """Test for destroy with class missing"""
@@ -295,6 +316,13 @@ class TestShowCommand(unittest.TestCase):
         except:
             pass
         FileStorage._FileStorage__objects = {}
+
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
 
     def test_show_no_arg(self):
         """Test for show with no command"""
@@ -416,6 +444,13 @@ class TestAll(unittest.TestCase):
             pass
         FileStorage._FileStorage__objects = {}
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def test_update_no_existent_class(self):
         """Test for all with no existent class"""
         message = "** class doesn't exist **\n"
@@ -486,6 +521,13 @@ class TestUpdate(unittest.TestCase):
         except:
             pass
         FileStorage._FileStorage__objects = {}
+
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
 
     def test_update_no_class(self):
         """  Test for update with no class """
