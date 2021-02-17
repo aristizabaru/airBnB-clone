@@ -72,6 +72,42 @@ class TestFileStorage(unittest.TestCase):
         self.assertNotEqual(count_new, count_back_up,
                             "Both dictionaries have same number of items")
 
+    # ####NEW TEST####
+
+    def setUp(self):
+        ''' Setup for erasing file.json when starting every test. '''
+        # Get Current Working Directory.
+        cwd = os.getcwd()
+        # Concat. the cwd to the name of the .json file
+        file_path = cwd + "/file.json"
+        # Try to remove it.
+        try:
+            os.remove(file_path)
+        # Except it is not there.
+        except Exception as e:
+            pass
+        # Reset dictionary of storage.
+        models.storage._FileStorage__objects = {}
+
+    def test_file_storage(self):
+        ''' Tests for the creation of FileStorage classes. '''
+        # Test type of FileStorage.
+        self.assertEqual(type(models.storage), type(engine.FileStorage()))
+
+        # Test private attributes.
+        self.assertTrue(hasattr(models.storage, "_FileStorage__objects"))
+        self.assertTrue(hasattr(models.storage, "_FileStorage__file_path"))
+
+        # Get empty dictionary as there is no .json file.
+        no_dicto = models.storage.all()
+
+        # Test for the empty dictionary.
+        self.assertTrue(bool(no_dicto))
+
+    def test_FileStorage_no_args(self):
+        ''' Tests for creation of FileStorage class. '''
+        self.assertEqual(type(engine.FileStorage()), engine.FileStorage)
+
     def test_json_path(self):
         """Test if json file exist"""
         my_base = base.BaseModel()
@@ -79,6 +115,19 @@ class TestFileStorage(unittest.TestCase):
         pwd = os.getcwd()
         path = pwd + "/file.json"
         self.assertTrue(os.path.exists(path))
+
+    def test_all(self):
+        '''Test all callback dict '''
+        new = base.BaseModel()
+        tempo_dict = models.storage.all()
+        self.assertIsInstance(tempo_dict, dict)
+
+        # Test for checking BaseModel.id key in dictionary.
+        string_id = "BaseModel" + "." + new.id
+        self.assertIn(string_id, tempo_dict.keys())
+
+        # Test for object in the dictionary.
+        self.assertTrue(type(tempo_dict[string_id]), base.BaseModel)
 
     def test_new(self):
         """test new instance in objects"""
