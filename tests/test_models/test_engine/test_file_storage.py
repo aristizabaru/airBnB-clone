@@ -4,7 +4,7 @@ import unittest
 import pep8
 import models.engine.file_storage as engine
 import json
-# from models import models_dict
+import models.base_model as base
 import os
 
 
@@ -44,3 +44,16 @@ class TestFileStorage(unittest.TestCase):
             back_up[key] = back_up[key].to_dict()
         # compare both back_up and json_data
         self.assertDictEqual(json_data, back_up)
+
+    def test_new(self):
+        """Test that add an object to the FileStorage instance"""
+        storage = engine.FileStorage()
+        back_up = storage._FileStorage__objects
+        my_base = base.BaseModel()
+        storage._FileStorage__objects = {}
+        storage.new(my_base)
+        new_dict = storage._FileStorage__objects
+        count_new = len(new_dict)
+        count_back_up = len(back_up)
+        self.assertNotEqual(count_new, count_back_up,
+                            "Both dictionaries have same number of items")
