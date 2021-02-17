@@ -83,3 +83,7 @@ class TestFileStorage(unittest.TestCase):
         count_back_up = len(back_up)
         self.assertNotEqual(count_new, count_back_up,
                             "Both dictionaries have same number of items")
+
+    def test_intance_type(self):
+        """Test that variable  storage is a FileStorage instance"""
+        self.assertEqual(FileStorage, type(FileStorage()))
