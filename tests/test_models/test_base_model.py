@@ -31,13 +31,6 @@ class TestBaseModel(unittest.TestCase):
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
 
-    def tearDown(self):
-        """Tear down for all methods"""
-        try:
-            remove("file.json")
-        except:
-            pass
-
     def test_str(self):
         """test that the str method has the correct output"""
         inst = BaseModel()
