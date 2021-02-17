@@ -227,7 +227,7 @@ Ussage: quit
         return True
 
     def do_EOF(self, line):
-        """"Exit the console
+        """Exit the console
 
 Ussage: EOF
 Ussage [optional]: ctrl + D
