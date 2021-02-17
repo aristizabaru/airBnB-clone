@@ -3,6 +3,9 @@
 import unittest
 import pep8
 import models.engine.file_storage as engine
+import json
+# from models import models_dict
+import os
 
 
 class TestFileStorageDocs(unittest.TestCase):
@@ -19,10 +22,25 @@ class TestFileStorageDocs(unittest.TestCase):
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
 
-    def test_all_returns_dict(self):
-        """Test that all returns the FileStorage.__objects attr"""
+    def test_storage_all(self):
+        """Test that storage returns the FileStorage.__objects attr"""
         storage = engine.FileStorage()
         new_dict = storage.all()
         self.assertEqual(type(new_dict), dict)
         # Take name of private attribute from __dict__
         self.assertIs(new_dict, storage._FileStorage__objects)
+
+    def test_save_json(self):
+        """Test that save properly saves objects to file.json"""
+        os.remove("file.json")
+        storage = engine.FileStorage()
+        back_up = storage.all()
+        storage.save()
+        # FILE -> json.load() -> <dict>
+        with open("file.json", encoding="utf-8") as fd:
+            json_data = json.load(fd)
+        # <obj> -> <dict>
+        for key in back_up:
+            back_up[key] = back_up[key].to_dict()
+        # compare both back_up and json_data
+        self.assertDictEqual(json_data, back_up)
