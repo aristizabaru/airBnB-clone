@@ -45,6 +45,13 @@ class TestHelpCommand(unittest.TestCase):
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def test_help_help(self):
         """Test <help> <help>"""
         message = "List available commands with \"help\" or " \
@@ -144,6 +151,13 @@ class TestCreateCommand(unittest.TestCase):
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def test_create_no_class(self):
         """Test for create with class missing"""
         message = "** class name missing **\n"
@@ -184,6 +198,13 @@ class TestDestroyCommand(unittest.TestCase):
             pass
         # Boot __objects private attribute
         FileStorage._FileStorage__objects = {}
+
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
 
     def test_destroy_no_class(self):
         """Test for destroy with class missing"""
@@ -296,6 +317,13 @@ class TestShowCommand(unittest.TestCase):
             pass
         FileStorage._FileStorage__objects = {}
 
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
     def test_show_no_arg(self):
         """Test for show with no command"""
         message = "** class name missing **\n"
@@ -403,3 +431,81 @@ class TestShowCommand(unittest.TestCase):
                 alldic = storage.all()
                 objst = str(alldic[i + '.' + id_st[:-1]])
                 self.assertEqual(stdout[:-1], objst)
+
+
+class TestAll(unittest.TestCase):
+    """Test all command"""
+
+    def setUp(self):
+        """Set up for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+        FileStorage._FileStorage__objects = {}
+
+    def tearDown(self):
+        """Tear down for all methods"""
+        try:
+            remove("file.json")
+        except:
+            pass
+
+    def test_update_no_existent_class(self):
+        """Test for all with no existent class"""
+        message = "** class doesn't exist **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            HBNBCommand().onecmd("all MyModel")
+            st = fd.getvalue()
+            self.assertEqual(message, st)
+
+    def test_new_update_no_existent_class(self):
+        """Test for all with no existent class"""
+        message = "** class doesn't exist **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            pre_cmd = HBNBCommand().precmd("MyModel.all()")
+            HBNBCommand().onecmd(pre_cmd)
+            stdout = fd.getvalue()
+            if stdout[0] == "\n":
+                message = "\n" + message
+            self.assertEqual(message, stdout)
+
+    def test_empty(self):
+        """Tests for empty storage"""
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        message = "[]\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            HBNBCommand().onecmd("all")
+            stdout = fd.getvalue()
+            self.assertEqual(message, stdout)
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("all " + i)
+                stdout = fd.getvalue()
+                self.assertEqual(message, stdout)
+
+    def test_all_classes(self):
+        """ Tests All command for classes_double """
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        classes += classes
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as f:
+                HBNBCommand().onecmd("create " + i)
+                st = f.getvalue()
+            alldic = storage.all()
+            all_cl = []
+            all_full = []
+            for j in alldic.keys():
+                all_full.append(str(alldic[j]))
+                if i in j:
+                    all_cl.append(str(alldic[j]))
+            with patch('sys.stdout', new=io.StringIO()) as f:
+                HBNBCommand().onecmd("all " + i)
+                st = f.getvalue()
+                self.assertEqual(str(all_cl) + "\n", st)
+            with patch('sys.stdout', new=io.StringIO()) as f:
+                HBNBCommand().onecmd("all")
+                st = f.getvalue()
+                self.assertEqual(str(all_full) + "\n", st)
