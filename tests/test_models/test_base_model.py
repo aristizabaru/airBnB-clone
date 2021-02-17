@@ -4,6 +4,7 @@ import unittest
 import pep8
 import models
 import datetime
+from models.engine.file_storage import FileStorage
 BaseModel = models.base_model.BaseModel
 
 
@@ -27,10 +28,15 @@ class TestBaseModel(unittest.TestCase):
             remove("file.json")
         except:
             pass
+        # Boot __objects private attribute
+        FileStorage._FileStorage__objects = {}
 
     def tearDown(self):
         """Tear down for all methods"""
-        FileStorage._FileStorage__objects = {}
+        try:
+            remove("file.json")
+        except:
+            pass
 
     def test_str(self):
         """test that the str method has the correct output"""
