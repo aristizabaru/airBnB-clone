@@ -35,22 +35,6 @@ class TestFileStorageDocs(unittest.TestCase):
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
 
-    def setUp(self):
-        """ Set up for all methods """
-        try:
-            remove("file.json")
-        except:
-            pass
-        # Boot __objects private attribute
-        FileStorage._FileStorage__objects = {}
-
-    def tearDown(self):
-        """Tear down for all methods"""
-        try:
-            remove("file.json")
-        except:
-            pass
-
     def test_storage_all(self):
         """Test that storage returns the FileStorage.__objects attr"""
         storage = engine.FileStorage()
