@@ -7,6 +7,7 @@ from console import HBNBCommand
 from os import path, remove
 from unittest.mock import patch
 from models.engine.file_storage import FileStorage
+from models import storage
 
 
 class TestConsoleDocs(unittest.TestCase):
@@ -129,3 +130,44 @@ class TestHelpCommand(unittest.TestCase):
             HBNBCommand().onecmd("help count")
             stdout = fd.getvalue()
             self.assertEqual(message, stdout)
+
+
+class TestCreateCommand(unittest.TestCase):
+    """Test create command"""
+
+    def setUp(self):
+        """ Set up for all methods """
+        try:
+            remove("file.json")
+        except:
+            pass
+        # Boot __objects private attribute
+        FileStorage._FileStorage__objects = {}
+
+    def test_create_no_class(self):
+        """Test for create with class missing"""
+        message = "** class name missing **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            HBNBCommand().onecmd("create")
+            stdout = fd.getvalue()
+            self.assertEqual(message, stdout)
+
+    def test_create_invalid_class(self):
+        """Test for create with invalid class"""
+        message = "** class doesn't exist **\n"
+        with patch('sys.stdout', new=io.StringIO()) as fd:
+            HBNBCommand().onecmd("create MyModel")
+            stdout = fd.getvalue()
+            self.assertEqual(message, stdout)
+
+    def test_create_valid_class(self):
+        """Test for create with existing id"""
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        for id_class in classes:
+            with patch('sys.stdout', new=io.StringIO()) as fd:
+                HBNBCommand().onecmd("create " + id_class)
+                id_st = fd.getvalue()
+                alldic = storage.all()
+                self.assertTrue((id_class + '.' + id_st[:-1]) in alldic.keys())
+        self.assertEqual(len(alldic), len(classes))
