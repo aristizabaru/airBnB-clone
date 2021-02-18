@@ -229,7 +229,7 @@ Ussage [optional]: <class name>.all()
 (hbnb)
 ```
 
-`create and all`
+`create`
 
 ```
 KLICH84->/...->/AirBnB_clone/$ ./console.py
