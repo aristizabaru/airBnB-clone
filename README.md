@@ -139,7 +139,7 @@ $
    -  Ussage [optional]: `<class name>.destroy(<id>)`
 -  `all`: Prints all string representation of all instances based or not on the class name.
    -  Ussage: `all <class name>`
-   -  Ussage: `[optional]: <class name>.all()`
+   -  Ussage: [optional]: `<class name>.all()`
 -  `update`: Updates an instance based on the class name and id by adding or updating attribute. (save the change into the JSON file).
    -  Ussage: `update <class name> <id> <attribute name> '<attribute value>'`
    -  Ussage: [optional]: `<class name>.update(<id>, <attribute name>, <attribute value>)`
