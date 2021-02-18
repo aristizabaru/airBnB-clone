@@ -167,6 +167,8 @@ Ussage [optional]: <class name>.all()
 and id by adding or updating attribute
 
 Ussage: update <class name> <id> <attribute name> '<attribute value>'
+Ussage [optional]:
+<class name>.update(<id>,<attribute name>, <attribute value>)
         """
         if self.check_class(line) is False:
             return
