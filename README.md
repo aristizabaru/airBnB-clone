@@ -127,7 +127,7 @@ $
 
 -  `create`: Creates a new instance of a model.
    -  Ussage: `create <class name>`
-   Ussage [optional]: `<class name>.create()`
+   -  Ussage [optional]: `<class name>.create()`
 -  `count`: Return number of istances of a class.
    -  Ussage: `count <class name>`
    -  Ussage [optional]: `<class name>.all()`
@@ -141,6 +141,7 @@ $
    -  Ussage: `[optional]: <class name>.all()`
 -  `update`: Updates an instance based on the class name and id by adding or updating attribute. (save the change into the JSON file).
    -  Ussage: `update <class name> <id> <attribute name> '<attribute value>'`
+   -  Ussage: [optional]: `<class name>.update(<id>, <attribute name>, <attribute value>)`
 -  `quit`: Exit the console.
    -  Ussage: `quit`
 -  `EOF`: "Exit the console.
