@@ -232,14 +232,21 @@ Ussage [optional]: <class name>.all()
 `create and all`
 
 ```
+KLICH84->/...->/AirBnB_clone/$ ./console.py
+(hbnb) comandinvalid
+*** Unknown syntax: comandinvalid
+(hbnb) create classIncalid
+** class doesn't exist **
 (hbnb) create BaseModel
-c83c8280-f499-4a6b-9df4-0454d76b9ae3
-(hbnb) all BaseModel
-["[BaseModel] (c83c8280-f499-4a6b-9df4-0454d76b9ae3) {'id': 'c83c8280-f499-4a6b-9df4-0454d76b9ae3', 'created_at': datetime.datetime(2021, 2, 15, 18, 48, 22, 493634), 'updated_at': datetime.datetime(2021, 2, 15, 18, 48, 22, 493634)}"]
-(hbnb) all User
-["[User] (407c31ba-09e0-4d96-8e7a-a90bb4c7cc9d) {'id': '407c31ba-09e0-4d96-8e7a-a90bb4c7cc9d', 'created_at': datetime.datetime(2021, 2, 15, 18, 53, 0, 796130), 'updated_at': datetime.datetime(2021, 2, 15, 18, 53, 0, 796130)}"]
-(hbnb)
+a38dec44-75e1-414d-8f6b-d8d9aa030ad2
+(hbnb) BaseModel.create()
+ef9d643e-578c-4f6e-9527-9037570abce0
+(hbnb) all
+["[BaseModel] (a38dec44-75e1-414d-8f6b-d8d9aa030ad2) {'id': 'a38dec44-75e1-414d-8f6b-d8d9aa030ad2', 'created_at': datetime.datetime(2021, 2, 17, 20, 27, 10, 707536), 'updated_at': datetime.datetime(2021, 2, 17, 20, 27, 10, 707536)}", "[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839)}"]
+(hbnb) EOF
 ```
+
+`two mode `
 
 `mode non-interactive`
 
