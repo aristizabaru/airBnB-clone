@@ -107,6 +107,7 @@ Ussage [optional]: <class name>.all()
 an instance based on the class name
 
 Ussage: show <class name> <id>
+Ussage [optional]: <class name>.show()
         """
         if self.check_class(line) is False:
             return
