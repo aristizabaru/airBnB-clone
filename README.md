@@ -325,6 +325,30 @@ b3f013e0-967f-4729-a9d1-8bb93948693d
 (hbnb)
 ```
 
+`update`
+
+```
+KLICH84->/...->/AirBnB_clone/$ ./console.py 
+(hbnb) update
+** class name missing **
+(hbnb) update Base
+** class doesn't exist **
+(hbnb) update BaseModel
+** instance id missing **
+(hbnb) update BaseModel ef9d643e-578c-4f6e-9527-9037570abce
+** no instance found **
+(hbnb) update BaseModel ef9d643e-578c-4f6e-9527-9037570abce0
+** attribute name missing **
+(hbnb) update BaseModel ef9d643e-578c-4f6e-9527-9037570abce0 name
+** value missing **
+(hbnb) update BaseModel ef9d643e-578c-4f6e-9527-9037570abce0 name Holberton
+(hbnb) show BaseModel ef9d643e-578c-4f6e-9527-9037570abce0
+[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 21, 19, 14, 726496), 'name': 'Holberton'}
+(hbnb) all
+["[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 21, 19, 14, 726496), 'name': 'Holberton'}", "[User] (b3f013e0-967f-4729-a9d1-8bb93948693d) {'id': 'b3f013e0-967f-4729-a9d1-8bb93948693d', 'created_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606), 'updated_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606)}"]
+(hbnb) quit
+```
+
 `mode non-interactive`
 
 ```
