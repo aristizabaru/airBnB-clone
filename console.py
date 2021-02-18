@@ -79,6 +79,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of a model
 
 Ussage: create <class name>
+Ussage [optional]: <class name>.create()
         """
         if self.check_class(line) is False:
             return
