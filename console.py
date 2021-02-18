@@ -107,7 +107,7 @@ Ussage [optional]: <class name>.all()
 an instance based on the class name
 
 Ussage: show <class name> <id>
-Ussage [optional]: <class name>.show()
+Ussage [optional]: <class name>.show(<id>)
         """
         if self.check_class(line) is False:
             return
@@ -124,6 +124,7 @@ Ussage [optional]: <class name>.show()
 classname and id
 
 Ussage: destroy <class name> <id>
+Ussage [optional]: <class name>.destroy(<id>)
         """
         if self.check_class(line) is False:
             return
