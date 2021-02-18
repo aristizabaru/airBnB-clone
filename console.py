@@ -79,7 +79,6 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of a model
 
 Ussage: create <class name>
-Ussage [optional]: <class name>.create()
         """
         if self.check_class(line) is False:
             return
@@ -107,7 +106,6 @@ Ussage [optional]: <class name>.all()
 an instance based on the class name
 
 Ussage: show <class name> <id>
-Ussage [optional]: <class name>.show(<id>)
         """
         if self.check_class(line) is False:
             return
@@ -124,7 +122,6 @@ Ussage [optional]: <class name>.show(<id>)
 classname and id
 
 Ussage: destroy <class name> <id>
-Ussage [optional]: <class name>.destroy(<id>)
         """
         if self.check_class(line) is False:
             return
@@ -167,8 +164,6 @@ Ussage [optional]: <class name>.all()
 and id by adding or updating attribute
 
 Ussage: update <class name> <id> <attribute name> '<attribute value>'
-Ussage [optional]:
-<class name>.update(<id>,<attribute name>, <attribute value>)
         """
         if self.check_class(line) is False:
             return
