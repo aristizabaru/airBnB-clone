@@ -130,7 +130,7 @@ $
    Ussage [optional]: `<class name>.create()`
 -  `count`: Return number of istances of a class.
    -  Ussage: `count <class name>`
-   -  Ussage `[optional]: <class name>.all()`
+   -  Ussage [optional]: `<class name>.all()`
 -  `show`: Prints the string representation of an instance based on the class name.
    -  Ussage: `show <class name> <id>`
 -  `destroy`: Deletes an instance based on the classname and id.
