@@ -328,7 +328,7 @@ b3f013e0-967f-4729-a9d1-8bb93948693d
 `update`
 
 ```
-KLICH84->/...->/AirBnB_clone/$ ./console.py 
+KLICH84->/...->/AirBnB_clone/$ ./console.py
 (hbnb) update
 ** class name missing **
 (hbnb) update Base
