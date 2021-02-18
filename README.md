@@ -127,6 +127,7 @@ $
 
 -  `create`: Creates a new instance of a model.
    -  Ussage: `create <class name>`
+   Ussage [optional]: `<class name>.create()`
 -  `count`: Return number of istances of a class.
    -  Ussage: `count <class name>`
    -  Ussage `[optional]: <class name>.all()`
