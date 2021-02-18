@@ -136,6 +136,7 @@ $
    -  Ussage [optional]: `<class name>.show(<id>)`
 -  `destroy`: Deletes an instance based on the classname and id.
    -  Ussage: `destroy <class name> <id>`
+   -  Ussage [optional]: `<class name>.destroy(<id>)`
 -  `all`: Prints all string representation of all instances based or not on the class name.
    -  Ussage: `all <class name>`
    -  Ussage: `[optional]: <class name>.all()`
