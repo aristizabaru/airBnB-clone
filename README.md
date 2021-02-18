@@ -302,7 +302,28 @@ d5159650-5c7a-4dc0-9340-cae14a2c25f4
 (hbnb)
 ```
 
+`all`
 
+```
+KLICH84->/...->/AirBnB_clone/$ ./console.py 
+(hbnb) all
+["[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839)}"]
+(hbnb) all User
+[]
+(hbnb) create User
+b3f013e0-967f-4729-a9d1-8bb93948693d
+(hbnb) all User
+["[User] (b3f013e0-967f-4729-a9d1-8bb93948693d) {'id': 'b3f013e0-967f-4729-a9d1-8bb93948693d', 'created_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606), 'updated_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606)}"]
+(hbnb) User.all()
+["[User] (b3f013e0-967f-4729-a9d1-8bb93948693d) {'id': 'b3f013e0-967f-4729-a9d1-8bb93948693d', 'created_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606), 'updated_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606)}"]
+(hbnb) BaseM.all()
+** class doesn't exist **
+(hbnb) BaseModel.all()
+["[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839)}"]
+(hbnb) all()
+["[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839)}", "[User] (b3f013e0-967f-4729-a9d1-8bb93948693d) {'id': 'b3f013e0-967f-4729-a9d1-8bb93948693d', 'created_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606), 'updated_at': datetime.datetime(2021, 2, 17, 21, 15, 20, 381606)}"]
+(hbnb)
+```
 
 `mode non-interactive`
 
