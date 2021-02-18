@@ -275,7 +275,7 @@ KLICH84->/...->/AirBnB_clone/$ ./console.py
 [BaseModel] (a38dec44-75e1-414d-8f6b-d8d9aa030ad2) {'id': 'a38dec44-75e1-414d-8f6b-d8d9aa030ad2', 'created_at': datetime.datetime(2021, 2, 17, 20, 27, 10, 707536), 'updated_at': datetime.datetime(2021, 2, 17, 20, 27, 10, 707536)}
 (hbnb) all
 ["[BaseModel] (a38dec44-75e1-414d-8f6b-d8d9aa030ad2) {'id': 'a38dec44-75e1-414d-8f6b-d8d9aa030ad2', 'created_at': datetime.datetime(2021, 2, 17, 20, 27, 10, 707536), 'updated_at': datetime.datetime(2021, 2, 17, 20, 27, 10, 707536)}", "[BaseModel] (ef9d643e-578c-4f6e-9527-9037570abce0) {'id': 'ef9d643e-578c-4f6e-9527-9037570abce0', 'created_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839), 'updated_at': datetime.datetime(2021, 2, 17, 20, 28, 30, 695839)}"]
-(hbnb) 
+(hbnb)
 ```
 
 `mode non-interactive`
