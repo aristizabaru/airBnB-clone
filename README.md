@@ -12,7 +12,7 @@
 
 The goal of the project is to deploy on your server a simple copy of the AirBnB website.
 Some of the functions that will cover the fundamental concepts will be implemented of the higher level programming track.
-Al final se obtendra una aplicacion web completa compuesta por:
+At the end you will get a complete web application composed by:
 
 -  A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging)
 -  A website (the front-end) that shows the final product to everybody: static and dynamic
