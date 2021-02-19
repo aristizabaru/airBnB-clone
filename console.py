@@ -91,7 +91,7 @@ Ussage: create <class name>
         """Return number of istances of a class
 
 Ussage: count <class name>
-Ussage [optional]: <class name>.all()
+Ussage [optional]: <class name>.count()
         """
         line = line.split()
         count = 0
