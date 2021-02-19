@@ -132,7 +132,7 @@ class TestHelpCommand(unittest.TestCase):
         """Test <help> <count>"""
         message = "Return number of istances of a class\n\n" \
             "Ussage: count <class name>\n" \
-            "Ussage [optional]: <class name>.all()\n        \n"
+            "Ussage [optional]: <class name>.count()\n        \n"
         with patch('sys.stdout', new=io.StringIO()) as fd:
             HBNBCommand().onecmd("help count")
             stdout = fd.getvalue()
@@ -776,3 +776,19 @@ class TestUpdate(unittest.TestCase):
             gattr = getattr(ins, j, False)
             self.assertEqual(gattr, k)
             self.assertEqual(m, type(gattr))
+
+
+class TestCount(unittest.TestCase):
+    """Test cases for count"""
+
+    def test_count(self):
+        """Test count on all classes"""
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        msg = "0\n"
+        for i in classes:
+            with patch('sys.stdout', new=io.StringIO()) as f:
+                pre_cmd = HBNBCommand().precmd(i + ".count()")
+                HBNBCommand().onecmd(pre_cmd)
+                st = f.getvalue()
+                self.assertEqual(msg, st)
