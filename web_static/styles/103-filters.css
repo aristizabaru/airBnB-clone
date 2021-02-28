@@ -67,6 +67,9 @@ h4 {
 .amenities:hover > .popover {
 	display: block;
 }
+.filters li:not(.filters li.tittle) {
+	padding-left: 15px;
+}
 
 /*** Responsive Styles Tablet And Below ***/
 @media all and (max-width: 980px) {
