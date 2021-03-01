@@ -162,4 +162,4 @@ Requirements:
 -  You must have 3 CSS files:
    -  `styles/3-common.css`: for the global style (i.e `body` style)
    -  `styles/3-header.css`: for the header style
-   -  `2 `: for the footer style
+   -  `styles/3-footer.css`: for the footer style
